@@ -1,4 +1,5 @@
-from Animal.Animal import *
+from lib.Animal import Animal
+from lib.Animal import Bear
 import csv
 
 
@@ -32,29 +33,27 @@ def generate_animals():
         a.state_activities()
 
 
-def csv_test():
+def generate_animals_csv():
     # Open the data and activities files using csv library
-    file = open("data/animals.csv", "r")
-    animal_data = csv.reader(file, delimiter=',', doublequote=True, quotechar="'")
+    file_animals = open("data/animals.csv", "r")
+    animal_data = csv.reader(file_animals, delimiter=',', doublequote=True, quotechar="'")
 
     # this does the same as above with less params
-    file2 = open("data/activities.csv", "r")
-    activity_data = csv.reader(file2)
+    file_activities = open("data/activities.csv", "r")
+    activity_data = csv.reader(file_activities)
 
     animals = {}
 
-    # Skip the headers
     # Create an animal obj with data from csv.
     # Add each animal to a dict with the 'Name' as the key
-    next(animal_data)
+    next(animal_data)  # Skip the headers
     for data in animal_data:
         animal = Animal(data[0], data[1], data[2])
         animals[data[0]] = animal
 
-    # Skip headers
     # Create for each activity, add to the animal it belongs to
     # Get the correct animal obj from dict using key 'Name' then run addActivity()
-    next(activity_data)
+    next(activity_data)  # Skip the headers
     for activity in activity_data:
         animals[activity[0]].add_activity(activity[1])
 
@@ -64,10 +63,20 @@ def csv_test():
         a.state_activities()
 
     # Close files (seems like it's something you're supposed to do)
-    file.close()
-    file2.close()
+    file_animals.close()
+    file_activities.close()
 
 
-generate_animals()
-print("=========================================")
-csv_test()
+def bear_test():
+    name = "Paddie"
+    animal_type = "Polar Bear"
+    size = "small"
+    hibernating = False
+
+    b = Bear(name, animal_type, size, hibernating)
+    b.introduce()
+    b.do_hibernate()
+    b.introduce()
+
+
+bear_test()
