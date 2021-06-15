@@ -1,6 +1,5 @@
-from lib.Animal import Animal
-from lib.Animal import Bear
 import csv
+from lib.Bear import *
 
 
 def generate_animals():
@@ -79,4 +78,5 @@ def bear_test():
     b.introduce()
 
 
+generate_animals_csv()
 bear_test()
