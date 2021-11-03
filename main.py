@@ -3,6 +3,7 @@ from lib.Bear import *
 
 
 def generate_animals():
+    # dictionary
     animals = {}
 
     data = open("data/animals.csv", "r")
@@ -19,8 +20,11 @@ def generate_animals():
 
     for i in data_input:
         # split the CSV format
+        # CSV format: name,type,size
         str_split = i.split(',')
         a = Animal(str_split[0], str_split[1], str_split[2])
+
+        # add to dictionary
         animals[str_split[0]] = a
 
     for i in activity_input:
